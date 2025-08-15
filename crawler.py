@@ -97,4 +97,10 @@ def write_csv(rows: List[Tuple[str, List[int]]], out_path: str) -> None:
 
 def crawl_and_save_csv(path: str = "static/mega645.csv"):
     rows = crawl_all()
-    writ
+    write_csv(rows, path)
+    return path
+
+if __name__ == "__main__":
+    output_file = "static/mega645.csv"
+    crawl_and_save_csv(output_file)
+    print(f"[DONE] Saved {output_file}")
