@@ -1,8 +1,7 @@
-# crawler.py
 import csv
 import re
 import time
-import sys
+import os
 from typing import List, Tuple, Optional
 import requests
 from bs4 import BeautifulSoup
@@ -54,7 +53,7 @@ def parse_rows_from_html(html: str) -> List[Tuple[str, List[int]]]:
     if results:
         return results
 
-    # fallback
+    # fallback nếu không parse được từ table
     text = soup.get_text("\n", strip=True)
     for line in text.splitlines():
         m = ROW_REGEX.search(line)
@@ -89,6 +88,7 @@ def crawl_all(max_pages: int = 60, sleep_sec: float = 1.2) -> List[Tuple[str, Li
     return unique_rows
 
 def write_csv(rows: List[Tuple[str, List[int]]], out_path: str) -> None:
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["Date", "Num1", "Num2", "Num3", "Num4", "Num5", "Num6"])
@@ -97,5 +97,4 @@ def write_csv(rows: List[Tuple[str, List[int]]], out_path: str) -> None:
 
 def crawl_and_save_csv(path: str = "static/mega645.csv"):
     rows = crawl_all()
-    write_csv(rows, path)
-    return path
+    writ
