@@ -194,6 +194,7 @@
 
         .frequency-bar {
             display: flex;
+			flex-wrap: wrap;
             align-items: end;
             justify-content: space-between;
             height: 200px;
@@ -203,8 +204,8 @@
         .bar {
             background: linear-gradient(135deg, #5a67d8, #4c51bf);
             border-radius: 4px 4px 0 0;
-            min-width: 8px;
-            margin: 0 1px;
+            min-width: 12px;
+            margin: 0 2px;
             position: relative;
         }
 
@@ -820,7 +821,7 @@
             const container = document.getElementById('frequencyChart');
             container.innerHTML = '';
             
-            for (let i = 1; i <= 38; i++) {
+            for (let i = 1; i <= 45; i++) {
                 const bar = document.createElement('div');
                 bar.className = 'bar';
                 const height = (frequency[i] / maxFreq) * 180;
