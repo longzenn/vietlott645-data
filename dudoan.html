@@ -284,7 +284,7 @@
             <h2>📊 Tải dữ liệu CSV</h2>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
                 <button class="upload-btn" onclick="loadDefaultCSV()" style="background: linear-gradient(135deg, #4ecdc4, #44a08d);">
-                    🔄 Tự động load từ static/mega645.csv
+                    🔄 Tự động load file csv
                 </button>
                 <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
                     📁 Chọn file CSV khác
@@ -398,7 +398,7 @@
 
         function loadDefaultCSV() {
             const status = document.getElementById('fileStatus');
-            status.innerHTML = '<p style="color: #4ecdc4;">🔄 Đang tải file static/mega645.csv...</p>';
+            status.innerHTML = '<p style="color: #4ecdc4;">🔄 Đang tải file mega645.csv...</p>';
             
             fetch('static/mega645.csv')
                 .then(response => {
@@ -411,7 +411,7 @@
                     lotteryData = parseCSV(csvData);
                     
                     if (lotteryData.length > 0) {
-                        status.innerHTML = `<p style="color: green;">✅ Đã tải ${lotteryData.length} kết quả từ static/mega645.csv!</p>`;
+                        status.innerHTML = `<p style="color: green;">✅ Đã tải ${lotteryData.length} kết quả từ mega645.csv!</p>`;
                         analyzeData();
                         document.getElementById('analysisResults').classList.remove('hidden');
                     } else {
@@ -422,7 +422,7 @@
                     console.log('Không thể tải file mặc định:', error);
                     status.innerHTML = `
                         <div style="color: #ff9500; background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ff9500;">
-                            <p><strong>⚠️ Không tìm thấy file static/mega645.csv</strong></p>
+                            <p><strong>⚠️ Không tìm thấy file mega645.csv</strong></p>
                             <p>Vui lòng:</p>
                             <ul style="text-align: left; margin: 10px 0;">
                                 <li>1. Chạy <code>python crawler.py</code> để tạo dữ liệu</li>
