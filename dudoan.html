@@ -901,15 +901,36 @@
 
         function generateNewPrediction() {
             const btn = document.querySelector('.generate-btn');
-            const loading = btn.querySelector('.loading');
+            const loadingSpan = btn.querySelector('.loading');
             
-            loading.classList.remove('hidden');
+            // Hiển thị loading
+            loadingSpan.classList.remove('hidden');
             btn.disabled = true;
+            btn.style.opacity = '0.7';
             
             setTimeout(() => {
+                // Tạo dự đoán mới
                 generatePredictions();
-                loading.classList.add('hidden');
+                
+                // Ẩn loading
+                loadingSpan.classList.add('hidden');
                 btn.disabled = false;
+                btn.style.opacity = '1';
+                
+                // Hiệu ứng bounce cho các số mới
+                const balls = document.querySelectorAll('#predictedNumbers .number-ball');
+                balls.forEach((ball, index) => {
+                    ball.style.animation = 'none';
+                    setTimeout(() => {
+                        ball.style.animation = `bounce 2s infinite`;
+                        ball.style.animationDelay = `${index * 0.2}s`;
+                    }, 50);
+                });
+                
+                // Cập nhật dự đoán phụ
+                displayAlternativePredictions();
+                
+                console.log('✅ Đã tạo dự đoán mới!');
             }, 1500);
         }
 
