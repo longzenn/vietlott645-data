@@ -25,6 +25,7 @@ h1 { margin: 0; font-size: 28px; }
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
+  min-width: 150px;
 }
 .form-group label {
   align-content: center;
@@ -37,10 +38,10 @@ select, input, button {
   outline: none;
 }
 .form-group select {
-    appearance: none;         /* bỏ style mặc định */
+    appearance: none; /* bỏ style mặc định */
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: url("data:image/svg+xml;utf8,<svg fill='black' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 14px center
+  background: url("data:image/svg+xml;utf8,<svg fill='black' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 12px center
 }
 button {
   background: #2563eb;
