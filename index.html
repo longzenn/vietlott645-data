@@ -2,37 +2,40 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Dự đoán Vietlott 6/45 từ CSV</title>
+  <title>Dự đoán Vietlott 6/45</title>
   <link rel="shortcut icon" href="https://vietlott.vn/favicon.ico" type="image/png">
-  <style>
-    body { font-family: sans-serif; text-align: center; background: #f9f9f9; padding: 20px; }
-    h1 { margin-bottom: 10px; }
-    input, select, button { margin: 5px; padding: 5px; }
-    .numbers { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
-    .ball { width: 40px; height: 40px; background: gold; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-  </style>
+  <link href="static/styles.css" rel="stylesheet" type="text/css"  media="all"  />
 </head>
 <body>
-  <h1>Dự đoán Vietlott 6/45</h1>
+  <header>
+    <h1>Dự đoán Vietlott 6/45</h1>
+  </header>
 
-  <div>
-    <label>Chiến lược:</label>
-    <select id="strategy">
-      <option value="hot-heavy">Hot-heavy</option>
-      <option value="balanced">Balanced</option>
-      <option value="only-hot">Only Hot</option>
-    </select>
-    <input type="date" id="today">
-    <button id="predictBtn">Dự đoán</button>
+  <div class="container">
+    <div class="form-group">
+      <label for="strategy">Chiến lược:</label>
+      <select id="strategy">
+        <option value="hot-heavy">Hot-heavy</option>
+        <option value="balanced">Balanced</option>
+        <option value="only-hot">Only Hot</option>
+      </select>
+
+      <input type="date" id="today">
+      <button id="predictBtn">🎲 Dự đoán</button>
+    </div>
+
+    <h3>Hot Numbers 🔥:</h3>
+    <p id="hotNumbers">Đang tải...</p>
+
+    <h3>Cold Numbers ❄️:</h3>
+    <p id="coldNumbers">Đang tải...</p>
+
+    <div id="prediction"></div>
   </div>
 
-  <h3>Hot Numbers:</h3>
-  <p id="hotNumbers">Đang tải...</p>
-
-  <h3>Cold Numbers:</h3>
-  <p id="coldNumbers">Đang tải...</p>
-
-  <div id="prediction"></div>
+  <footer>
+    © 2025 - Công cụ dự đoán Vietlott 6/45 | Code by Bạn 😎
+  </footer>
 
   <script>
     let hot = [], cold = [];
@@ -47,8 +50,8 @@
         calcStats(data);
       })
       .catch(err => {
-        document.getElementById("hotNumbers").innerText = "Lỗi tải CSV!";
-        document.getElementById("coldNumbers").innerText = "Lỗi tải CSV!";
+        document.getElementById("hotNumbers").innerText = "⚠️ Lỗi tải CSV!";
+        document.getElementById("coldNumbers").innerText = "⚠️ Lỗi tải CSV!";
         console.error(err);
       });
 
@@ -116,13 +119,13 @@
 
     document.getElementById("predictBtn").addEventListener("click", () => {
       if (!hot.length || !cold.length) {
-        alert("Chưa có dữ liệu thống kê!");
+        alert("⚠️ Chưa có dữ liệu thống kê!");
         return;
       }
       const strategy = document.getElementById("strategy").value;
       const today = document.getElementById("today").value;
       const nums = predictStat(today, strategy, hot, cold);
-      document.getElementById("prediction").innerHTML = `<h3>Dãy dự đoán:</h3>
+      document.getElementById("prediction").innerHTML = `<h3>Dãy dự đoán 🎯:</h3>
         <div class="numbers">${nums.map(n => `<div class="ball">${n}</div>`).join("")}</div>`;
     });
   </script>
