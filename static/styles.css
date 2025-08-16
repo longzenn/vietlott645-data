@@ -15,7 +15,7 @@ h1 { margin: 0; font-size: 28px; }
   max-width: 800px;
   margin: 30px auto;
   background: white;
-  padding: 25px;
+  padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
@@ -35,6 +35,12 @@ select, input, button {
   border-radius: 8px;
   border: 1px solid #ccc;
   outline: none;
+}
+.form-group select {
+    appearance: none;         /* bỏ style mặc định */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url("data:image/svg+xml;utf8,<svg fill='black' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 14px center
 }
 button {
   background: #2563eb;
@@ -76,4 +82,12 @@ footer {
   color: #666;
   font-size: 13px;
   margin-top: 40px;
+}
+@media screen and (max-width: 767px) {
+  .container {
+    margin: 30px;
+  }
+  .form-group {
+    flex-direction: column;
+  }
 }
