@@ -636,7 +636,8 @@
             return Object.entries(frequency)
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 6)
-                .map(([num]) => parseInt(num));
+                .map(([num]) => parseInt(num))
+				.sort((a, b) => a - b); // Sort từ nhỏ đến lớn
         }
 
         function predictByTrend() {
@@ -663,7 +664,7 @@
             
             return trending.sort((a, b) => b.trend - a.trend)
                 .slice(0, 6)
-                .map(item => item.num);
+                .map(item => item.num)
         }
 
         function predictByPattern() {
@@ -1011,7 +1012,8 @@
                 { name: '🔥 Theo tần suất', numbers: predictByFrequency() },
                 { name: '📈 Theo xu hướng', numbers: predictByTrend() },
                 { name: '🎲 Theo pattern', numbers: predictByPattern() },
-                { name: '⏰ Theo khoảng cách', numbers: predictByGaps() }
+                { name: '⏰ Theo khoảng cách', numbers: predictByGaps() },
+				{ name: '⏰ Theo máy học', numbers: predictByMachine() },
             ];
             
             let html = '';
