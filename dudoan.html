@@ -1009,15 +1009,17 @@
         function displayAlternativePredictions() {
             const container = document.getElementById('alternativePredictions');
             const methods = [
-                { name: '🔥 Theo tần suất', numbers: predictByFrequency() },
-                { name: '📈 Theo xu hướng', numbers: predictByTrend() },
-                { name: '🎲 Theo pattern', numbers: predictByPattern() },
-                { name: '⏰ Theo khoảng cách', numbers: predictByGaps() },
-				{ name: '⏰ Theo máy học', numbers: predictByMachine() },
+                { name: '- Theo tần suất', numbers: predictByFrequency() },
+                { name: '- Theo xu hướng', numbers: predictByTrend() },
+                { name: '- Theo pattern', numbers: predictByPattern() },
+                { name: '- Theo khoảng cách', numbers: predictByGaps() },
+				{ name: '- Theo máy học', numbers: predictByMachine() },
             ];
             
             let html = '';
             methods.forEach(method => {
+				/ Đảm bảo sort một lần nữa để chắc chắn
+                const sortedNumbers = method.numbers.sort((a, b) => a - b);
                 html += `
                     <div style="margin-bottom: 15px;">
                         <strong>${method.name}:</strong>
